@@ -155,7 +155,7 @@ create an On-prem Database in Azure SQL Virtual Machine.
 
     - Action – Select **Allow**
 
-    - Name – Enter +++TCPRule++
+    - Name – Enter +++TCPRule+++
 
     ![](./media/image18.png)
 
@@ -180,21 +180,23 @@ create an On-prem Database in Azure SQL Virtual Machine.
 
     ![](./media/image22.png)
 
-20. Select **Yes** and login using the VM credentials.
+20. Login using the VM credentials.
 
     - Username - +++sqlserveradmin+++
 
     - Password - +++sqlPwd981!2@98+++
 
-    ![](./media/image23.png)![](./media/image24.png)
+    ![](./media/image23.png)
+21. Select **Yes**
+    ![](./media/image24.png)
 
-21. Once logged in, open the **SQL Server Management Studio 20** from
+22. Once logged in, open the **SQL Server Management Studio 20** from
     the windows Start menu.
 
     ![A computer screen with a blue background AI-generated content may be
     incorrect.](./media/image25.png)
 
-22. Ensure that the below details are selected, update if the values are
+23. Ensure that the below details are selected, update if the values are
     different.
 
     - Server name - +++SQLVM+++
@@ -204,32 +206,33 @@ create an On-prem Database in Azure SQL Virtual Machine.
     - Encryption – Optional
 
     - Trust Server certificate – Select the checkbox.
+    Then  click on **Connect**
 
     ![A screenshot of a computer AI-generated content may be
     incorrect.](./media/image26.png)
 
-23. The connection succeeds and gets connected to the SQL Server.
+24. The connection succeeds and gets connected to the SQL Server.
 
     ![A computer screen shot of a blue screen AI-generated content may be
     incorrect.](./media/image27.png)
 
-24. Right click on the Databases – Select **Restore Database**.
+25. Right click on the Databases – Select **Restore Database**.
 
     ![A screenshot of a computer AI-generated content may be
     incorrect.](./media/image28.png)
 
-25. In the Restore Database page, select **Device** -\> select the
+26. In the Restore Database page, select **Device** -\> select the
     **three dots** to navigate to the File Explorer in order to upload
     the database.
 
     ![A screenshot of a computer AI-generated content may be
     incorrect.](./media/image29.png)
 
-26. Click on **Add**.
+27. Click on **Add**.
 
     ![](./media/image30.png)
 
-27. There is a .bak file of the **Adventureworks** database under
+28. There is a .bak file of the **Adventureworks** database under
     **C:\LabFiles**. Navigate to the path and select
     **AdventureWorks2019.bak** and select **OK**. Select **OK** once the
     file is uploaded.
@@ -237,23 +240,23 @@ create an On-prem Database in Azure SQL Virtual Machine.
     ![A screenshot of a computer AI-generated content may be
     incorrect.](./media/image31.png)
 
-28. Click **OK**.
+29. Click **OK**.
 
     ![](./media/image32.png)
 
-29. In the Restore pane, ensure that the uploaded .bak file is selected
+30. In the Restore pane, ensure that the uploaded .bak file is selected
     and then click on **OK**.
 
     ![A screenshot of a computer AI-generated content may be
     incorrect.](./media/image33.png)
 
-30. Once the upload is **successful**, you will get a success message
+31. Once the upload is **successful**, you will get a success message
     that the upload is completed.
 
     ![A screenshot of a computer AI-generated content may be
     incorrect.](./media/image34.png)
 
-31. Now, you have an On-prem SQL Server with the Database Adventure
+32. Now, you have an On-prem SQL Server with the Database Adventure
     Works inside it.
 
     ![A screenshot of a computer AI-generated content may be
@@ -431,7 +434,7 @@ you will be migrating the database.
 
     - Subscription – Select your assigned **subscription**
     - Resource group – Select **RG4TargetDB**
-    - Location – **East US 2** is used here.
+    - Location – **@lab.CloudResourceGroup(ResourceGroup1).Location** is used here.
     - Migration Service Name – Enter +++**dbMigrate**+++
 
     ![](./media/image59.png)
