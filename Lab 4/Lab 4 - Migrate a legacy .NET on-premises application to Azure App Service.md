@@ -18,50 +18,50 @@ executing this lab
 
 1.  Open **PowerShell** in **Administrator** mode from your system and
     execute the below command to install IIS in your system
-
-    +++dism /online /enable-feature /featurename:IIS-WebServer /all/norestart+++
-
-    +++dism /online /enable-feature /featurename:IIS-ManagementConsole/all /norestart+++
-
+    ```
+    dism /online /enable-feature /featurename:IIS-WebServer /all /norestart 
+    ```
+    ```
+    dism /online /enable-feature /featurename:IIS-ManagementConsole /all /norestart
+    ```
     ![A screenshot of a computer program AI-generated content may be
     incorrect.](./media/image1.png)
 
-2.  Open the **Command Prompt** in the Administrator mode and
+3.  Open the **Command Prompt** in the Administrator mode and
     **execute** the below command. This is to change the IIS option to
     accommodate the lab requirements.
-
-    +++%windir%\system32\inetsrv\appcmd unlock config
-    -section:system.webServer/handlers+++
-
+    ```
+    %windir%\system32\inetsrv\appcmd unlock config -section:system.webServer/handlers
+    ```
     ![A screenshot of a computer AI-generated content may be
     incorrect.](./media/image2.png)
 
-3.  Open File Explorer and navigate to **C:\Labfiles**. Create a folder
+5.  Open File Explorer and navigate to **C:\Labfiles**. Create a folder
     named +++**dotnetwebapp**+++
 
     ![](./media/image3.png)
 
-4.  Press **Windows+R**, type +++**inetmgr**+++ and select **OK**.
+6.  Press **Windows+R**, type +++**inetmgr**+++ and select **OK**.
 
     ![A screenshot of a computer AI-generated content may be
     incorrect.](./media/image4.png)
 
     ![](./media/image5.png)
 
-5.  In the IIS Manager, Right click on **Sites** in the left pane and
+7.  In the IIS Manager, Right click on **Sites** in the left pane and
     select **Add Website**.
 
     ![A screenshot of a computer AI-generated content may be
     incorrect.](./media/image6.png)
 
-6.  Enter the **Server name** as +++**dotnetwebapp**+++. Select the
+8.  Enter the **Server name** as +++**dotnetwebapp**+++. Select the
     three dots against **Physical path**, navigate to the newly created
     folder **dotnetwebapp** in **C:\Labfiles** and select **OK**.
 
     ![A screenshot of a computer AI-generated content may be
     incorrect.](./media/image7.png)
 
-7.  Select OK in the next screen.
+9.  Select OK in the next screen.
 
     ![A screenshot of a computer AI-generated content may be
     incorrect.](./media/image8.png)
@@ -77,13 +77,13 @@ the Azure App Service Migration Assistant.
     ![A screenshot of a computer AI-generated content may be
     incorrect.](./media/image9.png)
 
-2.  Select **dotnetwebapp-local** from **C:\LabFiles** and select
+2.  Select **dotnetwebapp-local** from **C:\LabFiles\Migrate a legacy .NET on-premises application to Azure App Service** and select
     **Select Folder**.
 
     ![A screenshot of a computer AI-generated content may be
     incorrect.](./media/image10.png)
 
-3.  Double click the DotNetAppSqlDb.sln solution file to open the
+3.  Double click the **DotNetAppSqlDb.sln** solution file to open the
     solution.
 
     ![A screenshot of a computer AI-generated content may be
@@ -98,35 +98,36 @@ the Azure App Service Migration Assistant.
 
     ![A screenshot of a computer AI-generated content may be
     incorrect.](./media/image13.png)
+    **Note:** When we click on Publish it automaticaly gets published but we will do manula publish.
 
-6.  Select **Folder** and click **Next**.
+7.  Select **Folder** and click **Next**.
 
     ![A screenshot of a computer AI-generated content may be
     incorrect.](./media/image14.png)
 
-7.  Select the newly created **dotnetwebapp** folder under
+8.  Select the newly created **dotnetwebapp** folder under
     **C:\Labfiles** and click **OK**.
 
     ![A screenshot of a computer AI-generated content may be
     incorrect.](./media/image15.png)
 
-8.  Select **Finish** to publish the app to the target folder.
+9.  Select **Finish** to publish the app to the target folder.
 
     ![A screenshot of a computer AI-generated content may be
     incorrect.](./media/image16.png)
 
-9.  Once the **Publish profile** creation is successful, select
+10.  Once the **Publish profile** creation is successful, select
     **Close**.
 
     ![A screenshot of a computer AI-generated content may be
     incorrect.](./media/image17.png)
 
-10. Back in the **Publish** screen, select **Publish**.
+11. Back in the **Publish** screen, select **Publish**.
 
     ![A screenshot of a computer AI-generated content may be
     incorrect.](./media/image18.png)
 
-11. Ensure that the Publish is successful
+12. Ensure that the Publish is successful
 
     ![A screenshot of a computer AI-generated content may be
     incorrect.](./media/image19.png)
@@ -177,7 +178,7 @@ if the application runs on the IIS Server.
 
     - Server name - +++mysqlserver@lab.labinstanceid()+++
 
-    - Location – East US2
+    - Location – @lab.CloudResourceGroup(ResourceGroup1).Location
 
     - Authentication method – Use SQL authentication
 
@@ -252,7 +253,7 @@ if the application runs on the IIS Server.
 
     ![](./media/image39.png)
 
-13. Open the **mysqlserver@lab.labinstanceid()** resource. Select the
+13. Open the **mysqlserver@lab.LabInstance.Id** resource. Select the
     check box to enable **Allow Azure services and resources to access
     this server**. Select **Save**.
 
@@ -266,13 +267,13 @@ if the application runs on the IIS Server.
 
 13. Enter the below details and select **Connect**.
 
-    - Server Name - \<The server name you saved in the earlier step\>
+    - Server Name - Enter the server name you saved in the earlier step
 
     - Authentication – **SQL Server Authentication**
 
     - User Name – +++**tgsqlserveradmin**+++
 
-    - Password - +++ **sqlPwd981!2@98**+++
+    - Password - +++**sqlPwd981!2@98**+++
 
     - Encrypt – Select **Optional**
 
@@ -290,45 +291,37 @@ if the application runs on the IIS Server.
 15. In the **New Query** tab, enter the below query and **execute** it.
 
     ```
+    USE [DotNetAppSqlDb] 
 
-    USE \[DotNetAppSqlDb\]
-
-    GO
-
-    SET ANSI_NULLS ON
-
-    GO
-
-    SET QUOTED_IDENTIFIER ON
-
-    GO
-
-    CREATE TABLE \[dbo\].\[\_\_MigrationHistory\](
-
-    \[MigrationId\] \[nvarchar\](150) NOT NULL,
-
-    \[ContextKey\] \[nvarchar\](300) NOT NULL,
-
-    \[Model\] \[varbinary\](max) NOT NULL,
-
-    \[ProductVersion\] \[nvarchar\](32) NOT NULL,
-
-    CONSTRAINT \[PK_dbo.\_\_MigrationHistory\] PRIMARY KEY CLUSTERED
-
-    (
-
-    \[MigrationId\] ASC,
-
-    \[ContextKey\] ASC
-
-    )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY =
-    OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON,
-    OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON \[PRIMARY\]
-
-    ) ON \[PRIMARY\] TEXTIMAGE_ON \[PRIMARY\]
-
-    GO
-
+    GO 
+    SET ANSI_NULLS ON 
+    
+    GO 
+    SET QUOTED_IDENTIFIER ON 
+    
+    GO 
+    CREATE TABLE [dbo].[__MigrationHistory]( 
+    
+    [MigrationId] [nvarchar](150) NOT NULL, 
+    
+    [ContextKey] [nvarchar](300) NOT NULL, 
+    
+    [Model] [varbinary](max) NOT NULL, 
+    
+    [ProductVersion] [nvarchar](32) NOT NULL, 
+    
+     CONSTRAINT [PK_dbo.__MigrationHistory] PRIMARY KEY CLUSTERED  
+    
+    ( 
+    
+        [MigrationId] ASC, 
+        
+        [ContextKey] ASC 
+    
+    )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY] 
+    
+    ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY] 
+    GO 
     ```
 
     ![A screenshot of a computer AI-generated content may be
@@ -340,41 +333,28 @@ if the application runs on the IIS Server.
 16. Similar to the last step, execute the below query.
 
     ```
-
-    USE \[DotNetAppSqlDb\]
-
-    GO
-
-    SET ANSI_NULLS ON
-
-    GO
-
-    SET QUOTED_IDENTIFIER ON
-
-    GO
-
-    CREATE TABLE \[dbo\].\[Todoes\](
-
-    \[ID\] \[int\] IDENTITY(1,1) NOT NULL,
-
-    \[Description\] \[nvarchar\](max) NULL,
-
-    \[CreatedDate\] \[datetime\] NOT NULL,
-
-    CONSTRAINT \[PK_dbo.Todoes\] PRIMARY KEY CLUSTERED
-
-    (
-
-    \[ID\] ASC
-
-    )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY =
-    OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON,
-    OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON \[PRIMARY\]
-
-    ) ON \[PRIMARY\] TEXTIMAGE_ON \[PRIMARY\]
-
-    GO
-
+    USE [DotNetAppSqlDb] 
+    GO 
+    SET ANSI_NULLS ON 
+    
+    GO 
+    SET QUOTED_IDENTIFIER ON 
+    GO 
+    
+    CREATE TABLE [dbo].[Todoes]( 
+    
+    [ID] [int] IDENTITY(1,1) NOT NULL, 
+    
+    [Description] [nvarchar](max) NULL, 
+    
+    [CreatedDate] [datetime] NOT NULL, 
+    
+    CONSTRAINT [PK_dbo.Todoes] PRIMARY KEY CLUSTERED  
+    ( 
+        [ID] ASC 
+    )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY] 
+    ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY] 
+    GO 
     ```
 
     ![A screenshot of a computer AI-generated content may be
@@ -387,14 +367,14 @@ if the application runs on the IIS Server.
 
 19. Open **Web.config** file from **C:\Labfiles\dotnetwebapp** and
     replace the content under the tag **Connection String** (in the Line
-    number 12) as below, after replacing the :\<Server Name\> with the
+    number 12) as below, after replacing the ":Server Name" with the
     Server name value you saved from the Azure earlier.
 
     ```
-
     <add name="MyDbConnection"  
 
-         connectionString="Server=tcp:<Server Name>,1433;Database=DotNetAppSqlDb;User ID=tgsqlserveradmin;Password=sqlPwd981!2@98;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;MultipleActiveResultSets=True;"  
+         connectionString="Server=tcp:<Server Name>,1433;Database=DotNetAppSqlDb;User
+    ID=tgsqlserveradmin;Password=sqlPwd981!2@98;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;MultipleActiveResultSets=True;"  
 
          providerName="System.Data.SqlClient" /> 
 
@@ -402,12 +382,6 @@ if the application runs on the IIS Server.
 
     ![A screenshot of a computer program AI-generated content may be
     incorrect.](./media/image47.png)
-
-20. From a browser, open +++http://localhost+++ and The **Todo app** is
-    now hosted on the IIS Server.
-
-    ![A screenshot of a computer AI-generated content may be
-    incorrect.](./media/image48.png)
 
 ## Exercise 4 - Create a Azure Migrate Project
 
