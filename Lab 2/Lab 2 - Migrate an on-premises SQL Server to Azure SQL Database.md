@@ -70,7 +70,7 @@ create an On-prem Database in Azure SQL Virtual Machine.
 
     - Virtual Machine Name – +++**SQLVM**+++
 
-    - Region – **East US 2** is selected here
+    - Region – **@lab.CloudResourceGroup(ResourceGroup1).Location** is selected here
 
     - Availability options – Select **No infrastructure redundancy
     required**
@@ -190,13 +190,39 @@ create an On-prem Database in Azure SQL Virtual Machine.
 21. Select **Yes**
     ![](./media/image24.png)
 
-22. Once logged in, open the **SQL Server Management Studio 20** from
+22. Once logged in, open web browser and select **Start without your data**.
+    ![](./media/image93.png)
+    
+23. Click **Confrim and Continue**.
+    ![](./media/image94.png)
+    
+24. Click **Continue without Google Data**.
+    ![](./media/image95.png)
+    
+25. Click **Confirm and start browsing**.
+    ![](./media/image96.png)
+    
+27. Open the link +++https://download-directory.github.io/+++.
+    ![](./media/image97.png)
+    
+29. Enter +++https://github.com/Labsrepo/Labfiles+++ and press **Enter**.
+    ![](./media/image98.png)
+    
+31. Open the folder where the file is downloaded and unzip the downloaded folder, and then unzip the adventureworks zip file from it.
+    ![](./media/image99.png)
+    
+    ![](./media/image100.png)
+    This will be used as the input data in this exercise.
+    
+33. Create a folder named **Labfiles** in C drive and paste adventureworks2019.bak file in it.
+    ![](./media/image101.png)
+    
+35. Open the +++SQL Server Management Studio 20+++ from
     the windows Start menu.
-
     ![A computer screen with a blue background AI-generated content may be
     incorrect.](./media/image25.png)
 
-23. Ensure that the below details are selected, update if the values are
+36. Ensure that the below details are selected, update if the values are
     different.
 
     - Server name - +++SQLVM+++
@@ -211,28 +237,28 @@ create an On-prem Database in Azure SQL Virtual Machine.
     ![A screenshot of a computer AI-generated content may be
     incorrect.](./media/image26.png)
 
-24. The connection succeeds and gets connected to the SQL Server.
+37. The connection succeeds and gets connected to the SQL Server.
 
     ![A computer screen shot of a blue screen AI-generated content may be
     incorrect.](./media/image27.png)
 
-25. Right click on the Databases – Select **Restore Database**.
+38. Right click on the Databases – Select **Restore Database**.
 
     ![A screenshot of a computer AI-generated content may be
     incorrect.](./media/image28.png)
 
-26. In the Restore Database page, select **Device** -\> select the
+39. In the Restore Database page, select **Device** -\> select the
     **three dots** to navigate to the File Explorer in order to upload
     the database.
 
     ![A screenshot of a computer AI-generated content may be
     incorrect.](./media/image29.png)
 
-27. Click on **Add**.
+40. Click on **Add**.
 
     ![](./media/image30.png)
 
-28. There is a .bak file of the **Adventureworks** database under
+41. There is a .bak file of the **Adventureworks** database under
     **C:\LabFiles**. Navigate to the path and select
     **AdventureWorks2019.bak** and select **OK**. Select **OK** once the
     file is uploaded.
@@ -240,23 +266,23 @@ create an On-prem Database in Azure SQL Virtual Machine.
     ![A screenshot of a computer AI-generated content may be
     incorrect.](./media/image31.png)
 
-29. Click **OK**.
+42. Click **OK**.
 
     ![](./media/image32.png)
 
-30. In the Restore pane, ensure that the uploaded .bak file is selected
+43. In the Restore pane, ensure that the uploaded .bak file is selected
     and then click on **OK**.
 
     ![A screenshot of a computer AI-generated content may be
     incorrect.](./media/image33.png)
 
-31. Once the upload is **successful**, you will get a success message
+44. Once the upload is **successful**, you will get a success message
     that the upload is completed.
 
     ![A screenshot of a computer AI-generated content may be
     incorrect.](./media/image34.png)
 
-32. Now, you have an On-prem SQL Server with the Database Adventure
+45. Now, you have an On-prem SQL Server with the Database Adventure
     Works inside it.
 
     ![A screenshot of a computer AI-generated content may be
@@ -271,8 +297,7 @@ In this exercise, you will create an Azure SQL Database to which you
 will migrate your on-prem database.
 
 1.  Close the VM and in a new window open the Select SQL Deployment
-    option page at
-    +++https://portal.azure.com/#create/Microsoft.AzureSQL +++ and
+    option page at +++https://portal.azure.com/#create/Microsoft.AzureSQL+++ and
     select **Show options**.
 
     ![A screenshot of a computer AI-generated content may be
@@ -395,12 +420,10 @@ you will be migrating the database.
 
 3.  To create the login and user on the target Azure SQL Database, run
     the following script
-
-    \`\`\`
-
+    ```
     CREATE USER \[migrationuser\] WITH PASSWORD = 'sqlPwd981!2@98'; ALTER
     ROLE db_owner ADD MEMBER \[migrationuser\];
-    \`\`\`
+    ```
 
     ![A screenshot of a computer AI-generated content may be
     incorrect.](./media/image55.png)
@@ -434,7 +457,7 @@ you will be migrating the database.
 
     - Subscription – Select your assigned **subscription**
     - Resource group – Select **RG4TargetDB**
-    - Location – **@lab.CloudResourceGroup(ResourceGroup1).Location** is used here.
+    - Location – **East US 2** is used here.
     - Migration Service Name – Enter +++**dbMigrate**+++
 
     ![](./media/image59.png)
@@ -503,16 +526,16 @@ you will be migrating the database.
     ![A screenshot of a computer AI-generated content may be
     incorrect.](./media/image72.png)
 
-17. Once the registration is successful, **close** the Configuration
+17. Once the registration is successful, **Finish** the Configuration
     Manager.
 
     ![A screenshot of a computer AI-generated content may be
     incorrect.](./media/image73.png)
-
+18. Click **Close**.
     ![A screenshot of a computer AI-generated content may be
     incorrect.](./media/image74.png)
 
-18. Once this is done, after few minutes, the status of the Integration
+19. Once this is done, after few minutes, the status of the Integration
     runtime will change to **Online**. Proceed to the next step once it
     is **Online**.
 
@@ -546,7 +569,7 @@ to perform the same.
 
     - Resource group – Select **ResourceGroup1**
 
-    - Location – **East US 2** is used here
+    - Location – **@lab.CloudResourceGroup(ResourceGroup1).Location** is used here
 
     - SQL Server Instance Name – Give the **VM’s IP address** (This will be
     a unique value)
@@ -578,7 +601,7 @@ to perform the same.
     incorrect.](./media/image81.png)
 
 6.  In the next screen, the details of the target DB are populated.
-    Check these, enter the password as +++ sqlPwd981!2@98+++ and select
+    Check these, enter the password as +++sqlPwd981!2@98+++ and select
     **Next: Map source and target databases**.
 
     ![A screenshot of a computer screen AI-generated content may be
