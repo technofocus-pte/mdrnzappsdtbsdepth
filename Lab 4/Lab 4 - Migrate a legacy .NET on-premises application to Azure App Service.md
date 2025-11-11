@@ -98,35 +98,36 @@ the Azure App Service Migration Assistant.
 
     ![A screenshot of a computer AI-generated content may be
     incorrect.](./media/image13.png)
+    
     **Note:** When we click on Publish it automaticaly gets published but we will do manula publish.
 
-7.  Select **Folder** and click **Next**.
+6.  Select **Folder** and click **Next**.
 
     ![A screenshot of a computer AI-generated content may be
     incorrect.](./media/image14.png)
 
-8.  Select the newly created **dotnetwebapp** folder under
+7.  Select the newly created **dotnetwebapp** folder under
     **C:\Labfiles** and click **OK**.
 
     ![A screenshot of a computer AI-generated content may be
     incorrect.](./media/image15.png)
 
-9.  Select **Finish** to publish the app to the target folder.
+8.  Select **Finish** to publish the app to the target folder.
 
     ![A screenshot of a computer AI-generated content may be
     incorrect.](./media/image16.png)
 
-10.  Once the **Publish profile** creation is successful, select
+9.  Once the **Publish profile** creation is successful, select
     **Close**.
       ![A screenshot of a computer AI-generated content may be
     incorrect.](./media/image17.png)
 
-11. Back in the **Publish** screen, select **Publish**.
+10. Back in the **Publish** screen, select **Publish**.
 
     ![A screenshot of a computer AI-generated content may be
     incorrect.](./media/image18.png)
 
-12. Ensure that the Publish is successful
+11. Ensure that the Publish is successful
 
     ![A screenshot of a computer AI-generated content may be
     incorrect.](./media/image19.png)
