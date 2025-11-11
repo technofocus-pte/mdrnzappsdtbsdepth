@@ -273,10 +273,10 @@ CLI.
 
     ![](./media/image27.png)
 
-7.  Run the app again by adding **AZURE_OPENAI_ENDPOINT **with the value
+7.  Run the app again by adding **AZURE_OPENAI_ENDPOINT** with the value
     saved in the previous step.
 
-    +++AZURE_OPENAI_ENDPOINT=\<output-from-previous-cli-command\> dotnet run+++
+    +++AZURE_OPENAI_ENDPOINT= "replace-with-output-from-previous-cli-command" dotnet run+++
 
     ![](./media/image28.png)
 
