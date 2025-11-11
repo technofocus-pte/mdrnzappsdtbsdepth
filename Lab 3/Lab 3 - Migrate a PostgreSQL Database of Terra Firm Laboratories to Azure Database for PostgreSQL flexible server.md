@@ -98,7 +98,7 @@ on-premises environment for Terra Firm Laboratories.
     sign in with your cloud slice account:
 
     - Username - +++@lab.CloudPortalCredential(User1).Username+++
-    - Password - +++@lab.CloudPortalCredential(User1).Password+++
+    - TAP Token - +++@lab.CloudPortalCredential(User1).AccessToken+++
 
     ![](./media/image2.png)
     ![](./media/image3.png)
