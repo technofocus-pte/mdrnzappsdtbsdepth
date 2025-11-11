@@ -22,53 +22,16 @@ Database for PostgreSQL and azure-container-apps,ai-azd-templates.
 
 GitHub account -- You are expected to have your own GitHub login
 credentials. If you do not have, please create one from here
-- +++https://github.com/signup?user_email=&source=form-home-signupobjectives+++
++++https://github.com/signup?user_email=&source=form-home-signupobjectives+++
 
-## Exercise 1 : Provision , deploy the application and test it from the browser
-## Task 0: Understand the VM and the credentials
-
-In this task, we will identify and understand the credentials that we
-will be using throughout the lab.
-
-1.  **Instructions** tab hold the lab guide with the instructions to be
-    followed throughout the lab.
-
-2.  **Resources** tab has got the credentials that will be needed for
-    executing the lab.
-
-    - **URL** – URL to the Azure portal
-
-    - **Subscription** – This is the ID of the subscription assigned to
-      you
-
-    - **Username** – The user id with which you need to login to the
-      Azure services.
-
-    - **Password** – Password to the Azure login. Let us call this
-      Username and password as Azure login credentials. We will use
-      these creds wherever we mention Azure login credentials.
-
-    - **Resource Group** – The **Resource group** assigned to you.
-
-    \[!Alert\] **Important:** Make sure you create all your resources under
-    this Resource group
-
-    ![](./media/b1.png)
-
-3.  **Help** tab holds the Support information. The **ID** value here is
-    the **Lab instance ID** which will be used during the lab execution.
-
-    ![](./media/b2.png)
-
-##  Task 1 : Register Service provider
+## Exercise 1 : Provision, deploy the application and test it from the browser
+###  Task 1 : Register Service provider
 
 1.  Open a browser go to +++https://portal.azure.com+++ and sign in with
     your cloud slice account below.
-
-> Username: <+++@lab.CloudPortalCredential>(User1).Username+++
->
-> Password: <+++@lab.CloudPortalCredential(User1).Password>+++
->
+    - Username - +++@lab.CloudPortalCredential>(User1).Username+++
+    - TAP Token - +++@lab.CloudPortalCredential(User1).AccessToken+++
+      
    ![](./media/b3.png)
    ![](./media/b4.png)
 
@@ -82,72 +45,43 @@ will be using throughout the lab.
 
 4.  Expand Settings from the left navigation menu. Click on **Resource
     providers**, enter +++**Microsoft.AlertsManagement+++** and select
-    i,t, and then click **Register**.
+    it, and then click **Register**.
 
      ![](./media/b7.png)
      ![](./media/b8.png)
 
 5.  Click on **Resource providers**,
-    enter +++**Microsoft.DBforPostgreSQL+++** and select i,t, and then
+    enter +++**Microsoft.DBforPostgreSQL+++** and select it, and then
     click **Register**.
       ![](./media/b9.png)
       ![](./media/b10.png)
       ![](./media/b11.png)
       ![](./media/b12.png)
 
-7.  Repeat the steps \#10 and \#11 to register the following Resource
-    providers.
-
+7.  Similarly register the following Resource providers:
     - **+++Microsoft.Search+++**
-    
     - **+++Microsoft.Web+++**
-    
     - **+++Microsoft.ManagedIdentity+++**
-    
     - **+++Microsoft.Management+++**
     - **+++Microsoft.operationalinsights+++**
+    - **+++Microsoft.AlertsManagement+++**
 
-
-### Task 1: Copy the existing resource group name
+### Task 2: Copy the existing resource group name
 
 1.  On Home page, click on **Resource groups**  tile.
-
       ![](./media/image3.png)
 
 2.  Make sure you already have a resource group created for you to work.
     Never delete this resource group. Instead, you can delete resources
     within the resource group, but not the resource group itself.
 
-3.  Click on resource group name
-
+3.  Click on resource group name.
       ![](./media/image4.png)
 
 4.  Copy the resource group name and save it in Notepad to use for
-    deploying all resources into this resource group
+    deploying all resources into this resource group.
 
      ![](./media/image5.png)
-
-### Task 2 : Register Service provider
-
-1.  Switch back to Azure portal tab, click on **Subscription** tile.
-
-      ![](./media/image8.png)
-
-2.  Click on subscription name.
-
-      ![](./media/image9.png)
-
-3.  Click on **Settings - \> Resource provider** from left navigation
-    menu.
-
-      ![](./media/image10.png)
-
-4.  Type +++Microsoft.AlertsManagement+++ and press enter. Select
-    it and then click on **Register**.
-
-      ![](./media/image11.png)
-
-      ![](./media/image12.png)
 
 ### Task 3 : Open development environment
 
@@ -177,23 +111,27 @@ will be using throughout the lab.
 
 ### Task 4: Provision Services and deploy application to Azure
 
-1.  Run the following command on the Terminal. It generates the code to
+1.  In the **infra** folder, select the **main.bicep** file to open it.
+2.  Navigate to the **C:\LabFiles\Deploying chat app on Azure Container Apps with PostgreSQL Flexible Server** directory, select the **main.bicep** file, and open it.
+3.  Copy the code and replace the contents of the main.bicep file in the Codespace.
+4.  Save the main.bicep file to apply the changes.
+5.  Run the following command on the Terminal. It generates the code to
     copy. Copy the code and press Enter.
 
       +++azd auth login+++
 
       ![](./media/image19.png)
 
-2.  Default browser opens to enter the generated code to verify. Enter
+6.  Default browser opens to enter the generated code to verify. Enter
     the code and click **Next**.
 
       ![](./media/image20.png)
 
-3.  Sign in with your Azure credentials.
+7.  Sign in with your Azure credentials.
 
       ![](./media/image21.png)
 
-4.  To create an environment for Azure resources, run the following
+8.  To create an environment for Azure resources, run the following
     Azure Developer CLI command.It asks you to enter environment name
     .Enter any name of your choice and press enter (eg :+++ragpgpy@lab.LabInstance.Id+++)
 
@@ -203,53 +141,53 @@ will be using throughout the lab.
       +++azd env new+++
 
       ![](./media/image22.png)
-5. Run below command to set resource group
+9. Run below command to set resource group
 
-   +++azd env set AZURE_RESOURCE_GROUP {your resource group name}+++
+   +++azd env set AZURE_RESOURCE_GROUP ResourceGroup1+++
      ![](./media/image29.png)
 
-6.  Run the following Azure Developer CLI command to provision the Azure
+10.  Run the following Azure Developer CLI command to provision the Azure
     resources and deploy the code.
 
       +++azd up+++
 
     
-7.  When prompted, select a **subscription** to create the resources and
+11.  When prompted, select a **subscription** to create the resources and
     select the region closest to your location; in this lab, we have
-    chosen the **East US2** region.
+    chosen the **@lab.CloudResourceGroup(ResourceGroup1).Location** region.
 
       ![](./media/image24.png)
 
-8.  When prompted, **enter a value for the 'openAILocation'
+12.  When prompted, **enter a value for the 'openAILocation'
     infrastructure parameter** select the region closest to your
     location; in this lab, we have chosen the **North Central
     US** region
 
       ![](./media/image26.png)
 
-9.  Provisioning resource will take around 15-16 min. Click **Yes** if
+13.  Provisioning resource will take around 15-16 min. Click **Yes** if
     prompted.
 
        ![](./media/image27.png)
 
-10. Wait for the template to provision all resource successfully.
+14. Wait for the template to provision all resource successfully.
 
      ![](./media/image28.png)
 
    
-13. Wait for the deployment to complete. Deployment takes \<5
+15. Wait for the deployment to complete. Deployment takes 5 mins
 
       ![](./media/image31.png)
 
-14. Click on the deployed web app endpoint link.
+16. Click on the deployed web app endpoint link.
 
      ![](./media/image32.png)
 
-15. Click on **Open**. It opens new tab with app
+17. Click on **Open**. It opens new tab with app
 
      ![](./media/image33.png)
 
-16. The app opens.
+18. The app opens.
 
       ![](./media/image34.png)
 
@@ -357,7 +295,8 @@ To clean up all the resources created by this sample:
 
       ![](./media/image52.png)
 
-**Summary:**:This use case walks you through deploying a chat application with PostgreSQL and OpenAI on Azure, focusing on cloud-based application
+## Summary
+This use case walks you through deploying a chat application with PostgreSQL and OpenAI on Azure, focusing on cloud-based application
 deployment and management. you’ve set up the development environment,
 installed necessary tools like Azure CLI, configured Azure resources
 using Azure Developer CLI, and deployed the application to Azure
