@@ -1,4 +1,4 @@
-### Lab 7 - Build a retrieval augmented generation (RAG) application using Azure OpenAI (text-embedding model) and Azure AI Search and deploy to Azure App Service
+# Lab 7 - Build a retrieval augmented generation (RAG) application using Azure OpenAI (text-embedding model) and Azure AI Search and deploy to Azure App Service
 
 ## Time Duration: 45 mins
 
@@ -67,7 +67,7 @@ This architecture offers several key advantages:
   Github account then you can create from
   [here](https://github.com/signup?ref_cta=Sign+up&ref_loc=header+logged+out&ref_page=%2F&source=header-home).
 
-# Task 1: Open GitHub Codespaces
+## Task 1: Open GitHub Codespaces
 
 The easiest way to get started is using GitHub Codespaces, which
 provides a complete development environment with all required
@@ -97,7 +97,7 @@ preinstalled tools.
 
     ![](./media/image7.png)
 
-# Task 2: Deploy the given architecture
+## Task 2: Deploy the given architecture
 
 In this exercise, you are going to deploy the provided architecture to
 your Azure account.
@@ -120,7 +120,7 @@ your Azure account.
 
     - Username - +++@lab.CloudPortalCredential(User1).Username+++
 
-    - Password - +++@lab.CloudPortalCredential(User1).Password+++
+    - TAP Token - +++@lab.CloudPortalCredential(User1).AccessToken+++
 
     ![](./media/image10.png)
 
@@ -146,7 +146,7 @@ your Azure account.
 
 5.  When prompted, enter the following details:
 
-    - **Enter a new environment Name:** +++blazorenv@lab.labinstanceid()+++
+    - **Enter a new environment Name:** +++blazorenv@lab.LabInstance.Id+++
 
     - **Select Azure Subscription to use:** Select the subscription
 
@@ -172,7 +172,7 @@ your Azure account.
 
     ![](./media/image17.png)
 
-# Task 3: Upload documents and create a search index
+## Task 3: Upload documents and create a search index
 
 Now that the infrastructure is deployed, you need to upload documents
 and create a search index that the application will use:
@@ -199,7 +199,7 @@ and create a search index that the application will use:
     incorrect.](./media/image21.png)
 
 5.  Click on **Browse for files**, navigate to
-    **C:\LabFiles\Build-a-RAG-application-using-Azure-OpenAI-and-Azure-AI-Search-and-deploy-to-Azure-App-Service**,
+    **C:\LabFiles\Build a RAG application using Azure OpenAI (text-embedding model) and Azure AI Search and deploy to Azure App Service**,
     select all five documents, and then click the **Open** button.
     ![A
     screenshot of a computer AI-generated content may be
@@ -271,10 +271,6 @@ and create a search index that the application will use:
 16. Copy the **Objects name prefix** value in Notepad for future use, as
     it is your search index name. Now, click **Create** to start the
     indexing process.
-
-    ![](./media/image35.png)
-    ![](./media/image36.png)
-    ![](./media/image37.png)
     ![A
     screenshot of a computer AI-generated content may be
     incorrect.](./media/image38.png)
@@ -286,33 +282,29 @@ and create a search index that the application will use:
     ![](./media/image39.png)
 
 18. Again, open the resource group and select Azure OpenAI service.
-
-    ![](./media/image35.png)
     ![](./media/image40.png)
 
 19. Select the **Endpoint** and then copy the value of the endpoint in
-    Notepad for future use.
-
-    ![](./media/image41.png)
+    Notepad for future use
     ![A screenshot of a computer AI-generated
     content may be incorrect.](./media/image42.png)
+    
     ![A screenshot of a
     computer AI-generated content may be incorrect.](./media/image43.png)
 
-20. Navigate to Codespace terminal, set the search index name as an AZD
+21. Navigate to Codespace terminal, set the search index name as an AZD
     environment variable:
 
-    +++azd env set SEARCH_INDEX_NAME \<your-search-index-name\>+++
+    +++azd env set SEARCH_INDEX_NAME replace-with-your-search-index-name+++
 
-    **Note:** Replace \<your-search-index-name\>with the index name you
+    **Note:** Replace \<replace-with-your-search-index-name\>with the index name you
     copied previously. AZD uses this variable in subsequent deployments to
     set the App Service app setting.
-
-    ![](./media/image44.png)
+    
     ![A screenshot of a computer AI-generated
     content may be incorrect.](./media/image45.png)
 
-# Exercise 4: Test the application and deploy
+## Exercise 4: Test the application and deploy
 
 In this exercise, you will test the application either before or after
 deployment directly from your Codespace. Once you’ve confirmed that the
@@ -322,24 +314,16 @@ application is functioning properly, proceed with the deployment.
     following command.
 
     +++azd env get-values+++
-
-    ![](./media/image46.png)
-    ![](./media/image47.png)
-    ![](./media/image48.png)
     ![](./media/image49.png)
 
 2.  Open **appsettings.Development.json.** Using the terminal output,
     update the values of:
 
-    - "OpenAIEndpoint": "\<value-of-OPENAI_ENDPOINT\>"
+    - "OpenAIEndpoint": "<value-of-OPENAI_ENDPOINT\>"
 
-    - "SearchServiceUrl": "\<value-of-SEARCH_SERVICE_ENDPOINT\>",
+    - "SearchServiceUrl": "<value-of-SEARCH_SERVICE_ENDPOINT\>",
 
-    - "SearchIndexName": "\<value-of-SEARCH_INDEX_NAME\>",
-
-    ![](./media/image50.png)
-    ![](./media/image51.png)
-    ![](./media/image52.png)
+    - "SearchIndexName": "<value-of-SEARCH_INDEX_NAME\>",
     ![A
     screenshot of a computer AI-generated content may be
     incorrect.](./media/image53.png)
@@ -347,12 +331,6 @@ application is functioning properly, proceed with the deployment.
 3.  Sign in to Azure with the Azure CLI:
 
     +++az login+++
-
-    ![](./media/image54.png)
-    ![](./media/image55.png)
-    ![](./media/image56.png)
-    ![](./media/image57.png)
-    ![](./media/image58.png)
     ![A
     screenshot of a computer program AI-generated content may be
     incorrect.](./media/image59.png)
@@ -363,9 +341,6 @@ application is functioning properly, proceed with the deployment.
     ![](./media/image60.png)
 
 5.  Select your Azure account and then click on **Continue**.
-
-    ![](./media/image61.png)
-    ![](./media/image62.png)
     ![A screenshot of a
     computer AI-generated content may be incorrect.](./media/image63.png)
 
@@ -398,7 +373,7 @@ application is functioning properly, proceed with the deployment.
 9.  Enter the following prompt. If you get a response, your application
     is connecting successfully to the Azure OpenAI resource.
 
-    “What does Contoso do with my personal information?”
+    +++What does Contoso do with my personal information?+++
 
     ![](./media/image70.png)
 
@@ -412,7 +387,7 @@ application is functioning properly, proceed with the deployment.
 
     Note: It will take 5-10 mins to complete the deployment.
 
-# Exercise 5: Test the deployed RAG application
+## Exercise 5: Test the deployed RAG application
 
 With the application fully deployed and configured, you can now test the
 RAG functionality:
@@ -453,7 +428,7 @@ RAG functionality:
 
     ![](./media/image78.png)
 
-# Exercise 6: Clean up resources
+## Exercise 6: Clean up resources
 
 When you're done with the application, you can delete all the resources
 to avoid incurring further costs:
@@ -467,3 +442,6 @@ Enter +++**y**+++ to confirm deletion and then press **Enter**.
 Now this command deletes all resources associated with your application.
 
 ![](./media/image80.png)
+
+## Summary
+In this lab, you provision Azure resources to build a RAG-based .NET Blazor web application integrating Azure OpenAI and Azure AI Search. You configure hybrid search with document indexing and embeddings to enable contextual Q&A with citations. The application is tested locally in GitHub Codespaces using managed identity for secure access. Finally, it’s deployed to Azure App Service and validated through a live chat interface powered by Azure AI.
