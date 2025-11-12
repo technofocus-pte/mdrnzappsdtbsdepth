@@ -33,7 +33,7 @@ credentials. If you do not have, please create one from here
     - TAP Token - +++@lab.CloudPortalCredential(User1).AccessToken+++
       
    ![](./media/b3.png)
-   ![](./media/b4.png)
+   ![](./media/image60.png)
 
 2.  Click on **Subscriptions** tile.
 
